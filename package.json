@@ -1,0 +1,19 @@
+{
+  "name": "hfso-part3",
+  "version": "1.0.0",
+  "description": "Helsinki Full Stack Open part3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DxVxDOD/HFSO-part3.git"
+  },
+  "author": "David Jozsef Orbang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DxVxDOD/HFSO-part3/issues"
+  },
+  "homepage": "https://github.com/DxVxDOD/HFSO-part3#readme"
+}
