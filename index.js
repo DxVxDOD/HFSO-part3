@@ -1,7 +1,11 @@
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 
+morgan.token('body', (request) => JSON.stringify({name: request.body.name, number: request.body.number}))
+
 app.use(express.json());
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
 
 let notes = [
     { 
@@ -33,7 +37,7 @@ app.get('/api/info', (request, response) => {
     const numberOfPeople = notes.map(note => note.id)
     const sendInfo = `
     <h2>The phonebook has info for ${Math.max(...numberOfPeople)} people</h2>
-    <p>${time}</p>`
+    <p>${time}</p>`;
 
     response.send(sendInfo);
 });
@@ -54,11 +58,11 @@ app.delete('/api/persons/:id', (request, response) => {
 
 app.post('/api/persons', (request, response) => {
     const body = request.body
-    const name = notes.find(note => note === body.name);
+    const name = notes.find(note => note.name === body.name);
 
     if(!body.name) response.status(400).json({error: 'name missing!'})
     if(!body.number) response.status(400).json({error: 'number missing!'})
-    if(!name) response.status(400).json({error: 'name already exists!'})
+    if(name) response.status(400).json({error: 'name already exists!'})
   
     const note = {
         id: Math.floor(Math.random() * 10000),
