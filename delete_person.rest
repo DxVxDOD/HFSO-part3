@@ -1,4 +1,4 @@
-POST http://localhost:3002/api/persons HTTP/1.1
+POST https://phonebook-backend-8jmd.onrender.com/api/persons HTTP/1.1
 Content-Type: application/json
 
 {
@@ -8,4 +8,4 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3002/api/info
+GET https://phonebook-backend-8jmd.onrender.com/
