@@ -4,7 +4,7 @@ const password = process.argv[2];
 
 const mongoUrl = `mongodb+srv://orbangdavid24:${password}@cluster0.sjpb3xy.mongodb.net/phoneBookApp?retryWrites=true&w=majority`;
 
-mongoose.set('strictQuery', false);
+mongoose.set('strictQuery', true);
 mongoose.connect(mongoUrl);
 
 const personSchema = new mongoose.Schema({
