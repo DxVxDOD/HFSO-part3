@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose' );
 require('dotenv').config();
 
 const mongoUrl = process.env.MONGO_URI;
@@ -13,8 +13,17 @@ mongoose.connect(mongoUrl)
   })
 
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: Number,
+  name: {
+    type: String,
+    minLength: [3, '{VALUE} is too short, provide a name with 3 or more characters.']
+  },
+  number: {
+    type: String,
+    validate: {
+      validator: v => /^\d{2,3}-\d{5,}$/.test(v),
+      message: error => `${error.value} is not a valid phone number. Try 123-45678 or 12-3456789 formats.`
+    }
+  },
 });
 
 personSchema.set('toJSON', {
@@ -24,5 +33,7 @@ personSchema.set('toJSON', {
     delete returnedObject.__v
   }
 })
+
+
 
 module.exports = mongoose.model('Person', personSchema);

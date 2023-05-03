@@ -41,10 +41,9 @@ app.delete('/api/persons/:id', (request, response, next) => {
 
 app.post('/api/persons', (request, response, next) => {
     const body = request.body
-    if (body.content === undefined) {
+    if (body === undefined) {
       return response.status(400).json({ error: 'content missing' })
-    }
-  
+    } 
     const person = new Person({
       name: body.name,
       number: body.number
@@ -59,7 +58,7 @@ app.post('/api/persons', (request, response, next) => {
   app.put('/api/persons/:id', (request, response, next) => {
     const {name, number} = request.body;
 
-    if (body.content === undefined) {
+    if (name === undefined || number === undefined) {
       return response.status(400).json({ error: 'content missing' })
     }
 
